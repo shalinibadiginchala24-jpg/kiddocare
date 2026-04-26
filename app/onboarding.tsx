@@ -103,6 +103,19 @@ function SlideItem({ item, index, scrollX }: { item: typeof slides[0]; index: nu
   );
 }
 
+function AnimatedDot({ index, scrollX, ringColor }: { index: number; scrollX: { value: number }; ringColor: string }) {
+  const dotStyle = useAnimatedStyle(() => {
+    const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
+    const dotWidth = interpolate(scrollX.value, inputRange, [7, 22, 7], Extrapolation.CLAMP);
+    const opacity = interpolate(scrollX.value, inputRange, [0.35, 1, 0.35], Extrapolation.CLAMP);
+    return { width: dotWidth, opacity };
+  });
+
+  return (
+    <Animated.View style={[styles.dot, dotStyle, { backgroundColor: ringColor }]} />
+  );
+}
+
 export default function OnboardingScreen() {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -130,15 +143,6 @@ export default function OnboardingScreen() {
   const skip = () => router.replace('/login');
   const slide = slides[currentIndex];
 
-  const dotStyle = (i: number) =>
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useAnimatedStyle(() => {
-      const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
-      const dotWidth = interpolate(scrollX.value, inputRange, [7, 22, 7], Extrapolation.CLAMP);
-      const opacity = interpolate(scrollX.value, inputRange, [0.35, 1, 0.35], Extrapolation.CLAMP);
-      return { width: dotWidth, opacity };
-    });
-
   return (
     <View style={[styles.container, { backgroundColor: slide.bg }]}>
       <Animated.FlatList
@@ -160,9 +164,11 @@ export default function OnboardingScreen() {
       <View style={styles.bottomContainer}>
         <View style={styles.paginatorContainer}>
           {slides.map((s, i) => (
-            <Animated.View
+            <AnimatedDot
               key={i}
-              style={[styles.dot, dotStyle(i), { backgroundColor: s.ringColor }]}
+              index={i}
+              scrollX={scrollX}
+              ringColor={s.ringColor}
             />
           ))}
         </View>

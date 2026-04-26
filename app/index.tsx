@@ -49,13 +49,9 @@ export default function Splash() {
         <Animated.Image
           source={require("../assets/images/logo.png")}
           style={styles.logo}
-          entering={ZoomIn.duration(1200)
-            .easing(Easing.out(Easing.cubic))
-            .delay(200)}
         />
 
         <Animated.Text
-          entering={FadeIn.duration(1400).delay(900)}
           style={styles.quote}
         >
           {'"Because every child deserves a safer digital world."'}
