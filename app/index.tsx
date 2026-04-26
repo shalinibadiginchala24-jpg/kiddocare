@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import Animated, { FadeIn, ZoomIn, Easing } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Splash() {
+  const router = useRouter();
+
   useEffect(() => {
     let exitTimer: any;
 
