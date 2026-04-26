@@ -53,9 +53,8 @@ export default function RootLayout() {
     Baloo2_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return null; // Don't render until custom fonts are loaded to avoid layout jumps
-  }
+  // Removed fontsLoaded block to prevent white blank screen on slow internet.
+  // App will render with system fonts if Baloo font is still loading.
 
   return (
     <AppProvider>
