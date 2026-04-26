@@ -1,0 +1,70 @@
+﻿
+> kiddocare@1.0.0 lint
+> expo lint
+
+env: load .env
+env: export EXPO_PUBLIC_FIREBASE_API_KEY EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN EXPO_PUBLIC_FIREBASE_PROJECT_ID EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID EXPO_PUBLIC_FIREBASE_APP_ID BROWSER
+
+C:\Users\shali\kiddocare\app\(child)\(tabs)\_layout.tsx
+  3:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\(tabs)\games.tsx
+  4:20  warning  'FadeInDown' is defined but never used     @typescript-eslint/no-unused-vars
+  6:10  warning  'Ionicons' is defined but never used       @typescript-eslint/no-unused-vars
+  9:10  warning  'rewardService' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\(tabs)\tasks.tsx
+  9:10  warning  'childId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\ai-buddy.tsx
+  5:20  warning  'MaterialCommunityIcons' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\games\memory.tsx
+   4:20  warning  'FadeIn' is defined but never used            @typescript-eslint/no-unused-vars
+   4:36  warning  'useAnimatedStyle' is defined but never used  @typescript-eslint/no-unused-vars
+   4:54  warning  'withSpring' is defined but never used        @typescript-eslint/no-unused-vars
+   4:66  warning  'withRepeat' is defined but never used        @typescript-eslint/no-unused-vars
+   4:78  warning  'withSequence' is defined but never used      @typescript-eslint/no-unused-vars
+   4:92  warning  'useSharedValue' is defined but never used    @typescript-eslint/no-unused-vars
+  12:9   warning  'width' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\map.tsx
+  5:20  warning  'FontAwesome5' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\settings.tsx
+  27:22  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(child)\stories\reader.tsx
+  4:20  warning  'FadeIn' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(parent)\(tabs)\_layout.tsx
+  1:25  warning  'Ionicons' is defined but never used        @typescript-eslint/no-unused-vars
+  3:10  warning  'LinearGradient' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\(parent)\location.tsx
+   1:27  warning  'useEffect' is defined but never used                @typescript-eslint/no-unused-vars
+   5:20  warning  'MaterialCommunityIcons' is defined but never used   @typescript-eslint/no-unused-vars
+  12:23  warning  'setCurrentZone' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\app\child-login.tsx
+   33:9  warning  'width' is assigned a value but never used                                                                      @typescript-eslint/no-unused-vars
+   91:6  warning  React Hook useEffect has a missing dependency: 'scale'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+  113:9  warning  'pinInputRef' is assigned a value but never used                                                                @typescript-eslint/no-unused-vars
+  134:6  warning  React Hook useEffect has a missing dependency: 'handleLogin'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\shali\kiddocare\app\login.tsx
+  4:10  warning  'theme' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\shali\kiddocare\components\BreathingCircle.tsx
+  19:6  warning  React Hook useEffect has a missing dependency: 'scale'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\shali\kiddocare\components\Logo.tsx
+   2:10  warning  'View' is defined but never used                                                                                                                   @typescript-eslint/no-unused-vars
+  33:6   warning  React Hook useEffect has missing dependencies: 'rotation', 'scale', 'starScale', and 'teddyY'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\shali\kiddocare\components\WaterTracker.tsx
+  29:9   warning  'btnStyle' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  41:16  warning  'e' is defined but never used                  @typescript-eslint/no-unused-vars
+
+Γ£û 31 problems (0 errors, 31 warnings)
+

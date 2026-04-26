@@ -1,58 +1,77 @@
-import { Tabs } from 'expo-router';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { View } from "react-native";
 
 export default function ParentTabsLayout() {
   return (
-    <Tabs screenOptions={{
-      tabBarActiveTintColor: '#4A90E2',
-      tabBarInactiveTintColor: '#c1c1c1',
-      headerShown: true,
-      headerStyle: {
-        backgroundColor: '#FFFFFF',
-      },
-      headerTintColor: '#333',
-      headerTitleStyle: {
-        fontWeight: '600',
-      },
-      tabBarStyle: {
-        backgroundColor: '#FFFFFF',
-        borderTopWidth: 1,
-        borderTopColor: '#F0F0F0',
-      }
-    }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "#7C3AED",
+        tabBarInactiveTintColor: "#9CA3AF",
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "#FFFFFF",
+          height: 68,
+          paddingBottom: 12,
+          paddingTop: 8,
+          borderTopWidth: 0,
+          elevation: 20,
+          shadowColor: '#7C3AED',
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 20,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '700',
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Dashboard',
-          tabBarIcon: ({ color }) => <MaterialIcons name="dashboard" size={24} color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color }) => (
+            <View style={{ alignItems: 'center' }}>
+              <MaterialIcons name="dashboard" size={26} color={color} />
+            </View>
+          ),
         }}
       />
       <Tabs.Screen
         name="tasks"
         options={{
-          title: 'Tasks',
-          tabBarIcon: ({ color }) => <MaterialIcons name="fact-check" size={24} color={color} />,
+          title: "Assign",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="add-task" size={26} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="activity"
         options={{
-          title: 'Activity',
-          tabBarIcon: ({ color }) => <MaterialIcons name="insights" size={24} color={color} />,
+          title: "Activity",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="analytics" size={26} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="alerts"
         options={{
-          title: 'Alerts',
-          tabBarIcon: ({ color }) => <MaterialIcons name="notifications" size={24} color={color} />,
+          title: "Alerts",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="notifications-active" size={26} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Settings',
-          tabBarIcon: ({ color }) => <MaterialIcons name="settings" size={24} color={color} />,
+          title: "Settings",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="settings" size={26} color={color} />
+          ),
         }}
       />
     </Tabs>
