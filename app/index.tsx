@@ -9,9 +9,11 @@ export default function Splash() {
   const router = useRouter();
 
   useEffect(() => {
+    let exitTimer: any;
+
     const bootstrap = async () => {
       // Show splash for 3 seconds then decide where to go
-      const exitTimer = setTimeout(async () => {
+      exitTimer = setTimeout(async () => {
         // Temporarily disable auto-login so you can see the onboarding:
         // const parentId = await AsyncStorage.getItem('parentId');
         // if (parentId) {
@@ -28,11 +30,13 @@ export default function Splash() {
         // Fresh user or no session: go to onboarding
         router.replace("/onboarding");
       }, 3000);
-
-      return () => clearTimeout(exitTimer);
     };
 
     bootstrap();
+
+    return () => {
+      if (exitTimer) clearTimeout(exitTimer);
+    };
   }, []);
 
   return (
