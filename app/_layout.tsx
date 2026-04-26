@@ -36,10 +36,14 @@ if (Platform.OS === 'web') {
 }
 
 // Global seamless font patch for React Native elements
-// @ts-ignore
-if (Text.defaultProps == null) (Text as any).defaultProps = {};
-// @ts-ignore
-(Text as any).defaultProps.style = { fontFamily: 'Baloo2_500Medium' };
+try {
+  // @ts-ignore
+  if (Text.defaultProps == null) (Text as any).defaultProps = {};
+  // @ts-ignore
+  (Text as any).defaultProps.style = { fontFamily: 'Baloo2_500Medium' };
+} catch (e) {
+  console.warn('Failed to set Text defaultProps:', e);
+}
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
