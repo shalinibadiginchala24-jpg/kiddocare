@@ -18,15 +18,13 @@ import Animated, {
   FadeInUp,
   ZoomIn,
 } from "react-native-reanimated";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { authService } from "@/services/authService";
 import { childService } from "@/services/childService";
 import { rewardService } from "@/services/rewardService";
 import { alertService } from "@/services/alertService";
-
-const { width } = Dimensions.get("window");
 
 // Unique pastel palette per child
 const CHILD_PALETTES = [
