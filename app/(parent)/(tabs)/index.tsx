@@ -448,7 +448,7 @@ export default function ParentHome() {
                 icon: "location-outline",
                 color: "#10B981",
                 bg: "#D1FAE5",
-                route: "/(parent)/location",
+                route: `/(parent)/location?childId=${selectedChildId}&childName=${selectedChild?.name || 'Child'}`,
               },
               {
                 label: "AI Assistant",

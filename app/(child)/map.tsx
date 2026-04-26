@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { alertService } from '@/services/alertService';
+import { locationService } from '@/services/locationService';
 import SafeMapView from '@/components/SafeMapView';
 
 export default function ChildJourneyMap() {
@@ -28,6 +29,12 @@ export default function ChildJourneyMap() {
         const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
         const { latitude, longitude } = loc.coords;
         setCoords({ latitude, longitude });
+
+        // Save to Firebase
+        const childId = await AsyncStorage.getItem('childId');
+        if (childId) {
+          await locationService.saveLocation(childId, latitude, longitude);
+        }
 
         // Reverse geocode to get readable address
         const [place] = await Location.reverseGeocodeAsync({ latitude, longitude });

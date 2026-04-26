@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar, Dimens
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as Location from 'expo-location';
 import SafeMapView from '@/components/SafeMapView';
+import { locationService } from '@/services/locationService';
 
 export default function LocationTracking() {
   const router = useRouter();
+  const { childId, childName } = useLocalSearchParams();
   const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(null);
   const [locationName, setLocationName] = useState('Locating child...');
   const [loading, setLoading] = useState(true);
@@ -22,23 +24,39 @@ export default function LocationTracking() {
         return;
       }
       try {
-        const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
-        const { latitude, longitude } = loc.coords;
-        setCoords({ latitude, longitude });
-        const [place] = await Location.reverseGeocodeAsync({ latitude, longitude });
-        if (place) {
-          const parts = [place.name, place.district, place.city, place.region].filter(Boolean);
-          setLocationName(parts.slice(0, 2).join(', ') || 'Current Location');
+        let latitude, longitude;
+        
+        // Try getting child's live location from Firebase first
+        const childLoc = childId ? await locationService.getLocation(childId as string) : null;
+        
+        if (childLoc && childLoc.latitude && childLoc.longitude) {
+          latitude = childLoc.latitude;
+          longitude = childLoc.longitude;
+          
+          // Reverse geocode
+          const [place] = await Location.reverseGeocodeAsync({ latitude, longitude });
+          if (place) {
+            const parts = [place.name, place.district, place.city, place.region].filter(Boolean);
+            setLocationName(parts.slice(0, 2).join(', ') || 'Child\'s Location');
+          } else {
+            setLocationName(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+          }
         } else {
-          setLocationName(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+          // Fallback to parent's current location
+          const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
+          latitude = loc.coords.latitude;
+          longitude = loc.coords.longitude;
+          setLocationName('Using your location (Child offline)');
         }
-      } catch {
+        
+        setCoords({ latitude, longitude });
+      } catch (e) {
         setLocationName('Location unavailable');
       } finally {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [childId]);
 
   const region = coords
     ? { latitude: coords.latitude, longitude: coords.longitude, latitudeDelta: 0.005, longitudeDelta: 0.005 }
